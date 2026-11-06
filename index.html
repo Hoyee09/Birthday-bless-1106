@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080d17">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="老张，十八岁生日快乐。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="老张 · 十八岁生日快乐">
+<meta property="og:description" content="你绝对是我遇到过最好的后桌。">
+<title>老张 · 十八岁生日快乐</title>
+<style>
+  :root{
+    --night:#080d17;
+    --night-2:#0d1625;
+    --ivory:#f3ecdd;
+    --muted:rgba(235,228,211,.56);
+    --gold:#c9a86b;
+    --gold-soft:rgba(201,168,107,.38);
+    --paper:#f5eee0;
+    --ink:#2c343b;
+    --ink-soft:#666b6b;
+    --serif:"Songti SC","STZhongsong","Noto Serif SC","Source Han Serif SC","SimSun",serif;
+    --mono:"Cascadia Mono","Consolas","SFMono-Regular",monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    color:var(--ivory);
+    font-family:var(--serif);
+    background:
+      radial-gradient(900px 620px at 50% -12%, rgba(54,86,116,.34), rgba(54,86,116,0) 62%),
+      radial-gradient(760px 560px at 86% 16%, rgba(201,168,107,.12), rgba(201,168,107,0) 62%),
+      radial-gradient(900px 700px at 8% 84%, rgba(44,86,105,.18), rgba(44,86,105,0) 62%),
+      linear-gradient(180deg,#070c15 0%,#0a1220 50%,#070b12 100%);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(201,168,107,.35);color:#fff}
+
+  #dust{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+  }
+  .glow{
+    position:fixed;
+    inset:-15%;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(30% 30% at 50% 28%, rgba(238,220,184,.09), rgba(238,220,184,0) 68%),
+      radial-gradient(34% 30% at 82% 58%, rgba(120,170,200,.07), rgba(120,170,200,0) 68%);
+    filter:blur(26px);
+    animation:glowDrift 20s ease-in-out infinite alternate;
+  }
+  @keyframes glowDrift{
+    0%{transform:translate3d(-1%,-1%,0) scale(1)}
+    100%{transform:translate3d(1.5%,1%,0) scale(1.05)}
+  }
+  .grain{
+    position:fixed;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    opacity:.045;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:180px 180px;
+  }
+
+  main{position:relative;z-index:2}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:96px 24px 80px;
+    text-align:center;
+  }
+  .hero-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width:860px;
+  }
+  .star{
+    width:15px;
+    height:15px;
+    margin-bottom:26px;
+    color:var(--gold);
+    opacity:.85;
+    animation:starGlow 5s ease-in-out infinite;
+  }
+  @keyframes starGlow{
+    0%,100%{opacity:.45;transform:scale(.92)}
+    50%{opacity:1;transform:scale(1.05)}
+  }
+  .eyebrow{
+    margin:0 0 26px;
+    font-family:var(--mono);
+    font-size:9.5px;
+    letter-spacing:.3em;
+    text-indent:.3em;
+    color:rgba(201,168,107,.78);
+  }
+  .name{
+    margin:0;
+    font-family:var(--serif);
+    font-size:clamp(80px,15vw,152px);
+    font-weight:600;
+    line-height:1.02;
+    letter-spacing:.04em;
+    text-indent:.04em;
+    color:var(--ivory);
+    text-shadow:0 0 46px rgba(255,240,215,.1);
+  }
+  .hero-title{
+    margin:20px 0 0;
+    font-family:var(--serif);
+    font-size:clamp(22px,3.2vw,31px);
+    letter-spacing:.28em;
+    text-indent:.28em;
+    color:#d9c9a8;
+  }
+  .hero-line{
+    margin:26px 0 0;
+    font-size:clamp(14px,1.6vw,16px);
+    line-height:1.9;
+    letter-spacing:.08em;
+    color:var(--muted);
+  }
+  .scroll-link{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-top:58px;
+    color:rgba(235,228,211,.45);
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.24em;
+    text-decoration:none;
+    transition:color .3s ease;
+  }
+  .scroll-link:hover{color:var(--gold)}
+  .scroll-link i{
+    display:block;
+    width:1px;
+    height:38px;
+    background:linear-gradient(180deg,var(--gold-soft),transparent);
+    transform-origin:top;
+    animation:scrollLine 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%,100%{transform:scaleY(.35);opacity:.35}
+    50%{transform:scaleY(1);opacity:1}
+  }
+
+  .hero-inner > *{
+    opacity:0;
+    animation:heroIn 1s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  .hero-inner > *:nth-child(1){animation-delay:.1s}
+  .hero-inner > *:nth-child(2){animation-delay:.2s}
+  .hero-inner > *:nth-child(3){animation-delay:.34s}
+  .hero-inner > *:nth-child(4){animation-delay:.5s}
+  .hero-inner > *:nth-child(5){animation-delay:.64s}
+  .hero-inner > *:nth-child(6){animation-delay:.8s}
+  @keyframes heroIn{
+    from{opacity:0;transform:translateY(22px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ---------- 信 ---------- */
+  .letter-section{
+    position:relative;
+    padding:clamp(40px,7vh,80px) 20px clamp(70px,10vh,110px);
+    display:flex;
+    justify-content:center;
+  }
+  .letter{
+    position:relative;
+    width:min(720px,100%);
+    padding:clamp(32px,6vw,58px) clamp(26px,6vw,62px) clamp(38px,6vw,64px);
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E"),
+      linear-gradient(180deg,#f8f2e5 0%,#f4ecdc 100%);
+    background-size:180px 180px, 100% 100%;
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:3px;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,.6) inset,
+      0 34px 80px rgba(0,0,0,.42);
+  }
+  .letter::before{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:.55;
+  }
+  .letter-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    margin:0 0 18px;
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.18em;
+    color:#92784f;
+  }
+  .letter-rule{
+    width:100%;
+    height:1px;
+    margin:0 0 clamp(28px,5vw,40px);
+    background:linear-gradient(90deg, rgba(160,135,95,.34), rgba(160,135,95,.08));
+  }
+  .salute{
+    margin:0 0 18px;
+    font-family:var(--serif);
+    font-size:clamp(23px,3vw,28px);
+    line-height:1.5;
+    letter-spacing:.03em;
+    color:var(--ink);
+  }
+  .letter p{
+    margin:0 0 1.15em;
+    font-family:var(--serif);
+    font-size:clamp(16.5px,1.8vw,18.5px);
+    line-height:2.05;
+    letter-spacing:.025em;
+    color:#30393f;
+  }
+  .letter p.lead{
+    font-size:clamp(18px,2.1vw,21px);
+    color:#252e35;
+  }
+  .letter p.spaced{margin-top:1.5em}
+  .letter p.wish{
+    margin:0 0 .4em;
+    padding-left:.4em;
+    color:#3a413f;
+  }
+  .letter p.wish:last-child{margin-bottom:0}
+
+  /* ---------- 结尾 ---------- */
+  .closing{
+    position:relative;
+    padding:clamp(40px,8vh,80px) 20px clamp(66px,10vh,100px);
+    text-align:center;
+  }
+  .closing::before{
+    content:"";
+    display:block;
+    width:54px;
+    height:1px;
+    margin:0 auto clamp(30px,5vh,44px);
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:.6;
+  }
+  .close-label{
+    margin:0 0 16px;
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.28em;
+    text-indent:.28em;
+    color:rgba(201,168,107,.7);
+  }
+  .closing h2{
+    margin:0;
+    font-family:var(--serif);
+    font-size:clamp(32px,5vw,48px);
+    font-weight:500;
+    line-height:1.4;
+    letter-spacing:.08em;
+    text-indent:.08em;
+    color:var(--ivory);
+  }
+  .close-date{
+    margin:18px 0 0;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.22em;
+    color:rgba(235,228,211,.38);
+  }
+  .back-top{
+    display:inline-block;
+    margin-top:30px;
+    color:rgba(235,228,211,.45);
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.18em;
+    text-decoration:none;
+    border-bottom:1px solid rgba(201,168,107,.25);
+    padding-bottom:4px;
+    transition:color .3s ease, border-color .3s ease;
+  }
+  .back-top:hover{color:var(--gold);border-color:var(--gold)}
+
+  footer{
+    position:relative;
+    z-index:2;
+    padding:0 20px 38px;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.24em;
+    color:rgba(235,228,211,.24);
+  }
+
+  .js .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1);
+  }
+  .js .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:600px){
+    .hero{padding:84px 18px 66px}
+    .name{font-size:clamp(72px,20vw,100px)}
+    .hero-title{font-size:22px;letter-spacing:.2em;text-indent:.2em}
+    .hero-line{font-size:13.5px}
+    .star{margin-bottom:22px}
+    .letter-section{padding:30px 14px 54px}
+    .letter{padding:30px 22px 38px}
+    .letter-meta{font-size:7.5px;letter-spacing:.12em}
+    .letter p{font-size:16px;line-height:2}
+    .letter p.lead{font-size:18px}
+    .salute{font-size:22px}
+    .closing{padding-top:44px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+    }
+    .js .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<main>
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <svg class="star" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 1.5 C13.1 8.2 15.8 10.9 22.5 12 C15.8 13.1 13.1 15.8 12 22.5 C10.9 15.8 8.2 13.1 1.5 12 C8.2 10.9 10.9 8.2 12 1.5Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+      </svg>
+      <p class="eyebrow">2026.11.06 / 18TH BIRTHDAY</p>
+      <h1 class="name">老张</h1>
+      <p class="hero-title">十八岁生日快乐</p>
+      <p class="hero-line">新的一岁，愿你明亮、自在、从容。</p>
+      <a class="scroll-link" href="#letter">
+        <span>向下 · 读信</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <section class="letter-section" id="letter">
+    <article class="letter reveal">
+      <div class="letter-meta">
+        <span>LETTER / 11.06</span>
+        <span>TO 老张</span>
+      </div>
+      <div class="letter-rule" aria-hidden="true"></div>
+
+      <p class="salute">老张：</p>
+      <p class="lead">你绝对是我遇到过最好的后桌。</p>
+      <p>我们一起大笑、一起玩平板、放学一起走出校门……这些看似平凡的琐碎，都刻进了记忆的最深处。后排有你，给枯燥的西校生活增添色彩。</p>
+      <p class="spaced">十八岁，愿你继续保持一份淡定，心里有数、遇事不慌，从容不迫。</p>
+      <p class="wish">愿你想去的地方都能去，想做的事都能成；</p>
+      <p class="wish">愿你有说走就走的底气，也有随时停下来的自由；</p>
+      <p class="wish">愿好运常伴，烦恼消散，万事皆安。</p>
+    </article>
+  </section>
+
+  <section class="closing reveal">
+    <p class="close-label">18 / HAPPY BIRTHDAY</p>
+    <h2>生日快乐，老张。</h2>
+    <p class="close-date">2026.11.06</p>
+    <a class="back-top" href="#top">回到顶部 ↑</a>
+  </section>
+
+  <footer>EIGHTEEN · NOVEMBER 6</footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- 轻微粒子 ---------------- */
+  var canvas = document.getElementById('dust');
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0, DPR = 1;
+  var motes = [];
+  var COLORS = ['244,237,221', '201,168,107', '159,195,216'];
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function build() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    var count = W < 600 ? 38 : 72;
+    motes = [];
+    for (var i = 0; i < count; i++) {
+      motes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: rand(0.45, 1.9),
+        a: rand(0.08, 0.4),
+        vx: rand(-0.06, 0.06),
+        vy: rand(-0.16, -0.035),
+        p: Math.random() * Math.PI * 2,
+        s: rand(0.25, 0.7),
+        c: COLORS[(Math.random() * COLORS.length) | 0]
+      });
+    }
+    if (reduce) draw(0);
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < motes.length; i++) {
+      var m = motes[i];
+      m.x += m.vx;
+      m.y += m.vy;
+      if (m.y < -8) {
+        m.y = H + 8;
+        m.x = Math.random() * W;
+      }
+      if (m.x < -8) m.x = W + 8;
+      if (m.x > W + 8) m.x = -8;
+
+      var tw = 0.65 + 0.35 * Math.sin(t * 0.001 * m.s + m.p);
+      ctx.beginPath();
+      ctx.arc(m.x + Math.sin(t * 0.0004 + m.p) * 3, m.y, m.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + m.c + ',' + (m.a * tw).toFixed(3) + ')';
+      ctx.fill();
+    }
+  }
+
+  function loop(t) {
+    draw(t);
+    requestAnimationFrame(loop);
+  }
+
+  build();
+  window.addEventListener('resize', build);
+  if (!reduce) requestAnimationFrame(loop);
+
+  /* ---------------- 滚动出现 ---------------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
